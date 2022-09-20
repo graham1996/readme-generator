@@ -1,28 +1,58 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {
 
-}
+
+function renderLicenseBadge(license) {
+  // let licenseType
+  let licenseType = license;
+  let badge = ''
+  if (licenseType === 'MIT') {
+    badge = `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
+  } else if (licenseType === 'Apache') {
+    badge = `![License: Apache](https://img.shields.io/badge/License-Apache-red.svg)`
+  } else if (licenseType === 'BSD') {
+    badge = `![License: BSD](https://img.shields.io/badge/License-BSD-blue.svg)`
+  } else {
+    licenseType = 'None'
+  }
+  return badge;
+};
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {
 
+function renderLicenseLink(license) {
+  let link;
+  let licenseType = license
+  if (licenseType === 'MIT'){
+      link = 'https://mit-license.org/'
+    } else if (licenseType === 'Apache'){
+      link = 'https://www.apache.org/licenses/LICENSE-2.0.html'
+    } else if (licenseType === 'BSD'){
+      link = 'https://opensource.org/licenses/BSD-3-Clause'
+    }
+
+  return link;
 }
 
 // TODO: Create a function that returns the license section of README
-
 // If there is no license, return an empty string
+
 function renderLicenseSection(license) {
+  if(license){
+    return `Licensed under ${this.renderLicenseLink(license)}.`
+  } else {
+    return ''
+  }
 
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return `# ${data.title} ${renderLicenseBadge()}
 
   ## Description:
-  ${data.description}
+  ${data.description} 
 
   ## Usage:
   ${data.usage}
@@ -34,7 +64,8 @@ function generateMarkdown(data) {
   ${data.tests}
 
   ## Licenses:
-  ${data.license}
+  ${this.renderLicenseSection(data.license)} 
+ 
 
   ## Contribution:
   ${data.contribution}
@@ -44,5 +75,5 @@ function generateMarkdown(data) {
   If you have any additional questions please contact me via ${data.email}
 `;
 }
-
+renderLicenseSection();
 module.exports = generateMarkdown;

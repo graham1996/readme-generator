@@ -37,7 +37,6 @@ const questions = [
             'MIT',
             'APACHE',
             'BSD',
-            'GPL',
             'None'
         ],
         name: 'license'
