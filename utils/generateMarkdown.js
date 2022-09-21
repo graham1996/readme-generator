@@ -1,10 +1,8 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 
-
 function renderLicenseBadge(license) {
-  // let licenseType
-  let licenseType = license;
+  let licenseType = license
   let badge = ''
   if (licenseType === 'MIT') {
     badge = `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
@@ -22,7 +20,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 
 function renderLicenseLink(license) {
-  let link;
+  let link = ''
   let licenseType = license
   if (licenseType === 'MIT'){
       link = 'https://mit-license.org/'
@@ -40,16 +38,17 @@ function renderLicenseLink(license) {
 
 function renderLicenseSection(license) {
   if(license){
-    return `Licensed under ${this.renderLicenseLink(license)}.`
+    return renderLicenseLink() + renderLicenseBadge()
   } else {
     return ''
   }
+  
 
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title} ${renderLicenseBadge()}
+  return `# ${data.title} 
 
   ## Description:
   ${data.description} 
@@ -64,16 +63,18 @@ function generateMarkdown(data) {
   ${data.tests}
 
   ## Licenses:
-  ${this.renderLicenseSection(data.license)} 
+  ${data.license}
  
 
   ## Contribution:
   ${data.contribution}
 
   ## Additional Information:
-  Github: [${data.github}](https://github.com/${data.github})
+  Github: [${data.github}](https://github.com/${data.github})\n
   If you have any additional questions please contact me via ${data.email}
 `;
 }
-renderLicenseSection();
+renderLicenseSection(`## Licenses`);
 module.exports = generateMarkdown;
+// ${this.renderLicenseSection(data.license)} 
+// ${renderLicenseBadge()}
